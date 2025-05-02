@@ -1,0 +1,61 @@
+﻿@model ProfileProjectMVC.Models.Email
+
+<div class="col-md-6 col-lg-6 col-sm-12">
+    <div class="contact-block">
+        <h2>Contact Form</h2>
+        @using (Ajax.BeginForm("Index", "Home",
+new AjaxOptions { LoadingElementId = "loaderEmail", UpdateTargetId = "resultDiv" }))
+        {
+            @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Subject" } })
+                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.EditorFor(model => model.EmailBody, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your Message" } })
+                    @Html.ValidationMessageFor(model => model.EmailBody, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="submit-button">
+                        <button class="btn btn-common" id="submit" type="submit">Send Message</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="loader" id="loaderEmail"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div id="resultDiv">
+                        <!-- This is where the response will be displayed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
